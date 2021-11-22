@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeenAge">
-        <activity android:name=".SplashActivity" android:exported="true">
+        <activity
+            android:name=".Account"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-
     </application>
 
 </manifest>

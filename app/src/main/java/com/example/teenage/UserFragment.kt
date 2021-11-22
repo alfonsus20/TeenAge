@@ -14,6 +14,7 @@ class UserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 //        (activity as AppCompatActivity).supportActionBar?.hide()
+        (activity as MainActivity).bottomNav.menu.getItem(3).isChecked = true
         return inflater.inflate(R.layout.fragment_user, container, false)
     }
 }

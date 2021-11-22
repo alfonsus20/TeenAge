@@ -12,6 +12,7 @@ class NotificationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as MainActivity).bottomNav.menu.getItem(2).isChecked = true
         return inflater.inflate(R.layout.fragment_notification, container, false)
     }
 }

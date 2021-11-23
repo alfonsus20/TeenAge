@@ -14,27 +14,51 @@ class SQLiteHelper(context: Context) :
 
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "teenage.db"
-        private const val TBL_ACCOUNT = "tbl_account"
+        private const val TBL_USER = "tbl_user"
         private const val ID = "id"
         private const val NAME = "name"
         private const val JENIS_KELAMIN = "jenis_kelamin"
         private const val TINGGI_BADAN = "tinggi_badan"
+
+        private const val TBL_DRINK = "tbl_drink"
+        private const val NAME_DRINK = "name_drink"
+        private const val JUMLAH = "jumlah"
+        private const val TANGGAL = "tanggal"
+
+        private const val TBL_WAKTU = "tbl_waktu"
+        private const val WAKTU = "waktu"
+        private const val STATUS = "status"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTblAccount = ("CREATE TABLE " + TBL_ACCOUNT + "("
+        val CREATE_TABLE_USER = ("CREATE TABLE " + TBL_USER + "("
                 + ID + "INTEGER PRIMARY KEY," + NAME + "TEXT,"
                 + JENIS_KELAMIN + "TEXT," + TINGGI_BADAN + "INTEGER"
                 + ")" )
-        db?.execSQL(createTblAccount)
+
+        val CREATE_TABLE_DRINK = ("CREATE TABLE " + TBL_DRINK + "("
+                + ID + "INTEGER PRIMARY KEY," + NAME_DRINK + "TEXT,"
+                + JUMLAH + "INTEGER," + TANGGAL + "TEXT"
+                + ")" )
+
+        val CREATE_TABLE_WAKTU = ("CREATE TABLE " + TBL_WAKTU + "("
+                + ID + "INTEGER PRIMARY KEY," + JUMLAH + "INTEGER,"
+                + WAKTU + "TEXT," + STATUS + "INTEGER"
+                + ")" )
+        db?.execSQL(CREATE_TABLE_USER + CREATE_TABLE_DRINK + CREATE_TABLE_WAKTU)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS $TBL_ACCOUNT ")
+        val DROP_TABLE_USER = "DROP TABLE IF EXISTS $TBL_USER"
+        val DROP_TABLE_DRINK = "DROP TABLE IF EXISTS $TBL_DRINK"
+        val DROP_TABLE_WAKTU = "DROP TABLE IF EXISTS $TBL_WAKTU"
+
+        db!!.execSQL(DROP_TABLE_USER + DROP_TABLE_DRINK + DROP_TABLE_WAKTU)
+
         onCreate(db)
     }
 
-    fun insertAccount(acc : AccountModel): Long{
+    fun insertUser(acc : UserModel): Long{
         val db = this.writableDatabase
 
         val contentValues = ContentValues()
@@ -43,15 +67,15 @@ class SQLiteHelper(context: Context) :
         contentValues.put(JENIS_KELAMIN, acc.jenis_kelamin)
         contentValues.put(TINGGI_BADAN, acc.tinggi_badan)
 
-        val success = db.insert(TBL_ACCOUNT, null, contentValues)
+        val success = db.insert(TBL_USER, null, contentValues)
         db.close()
         return success
     }
 
     @SuppressLint("Range")
-    fun getAlAccount(): ArrayList<AccountModel>{
-        val accList: ArrayList<AccountModel> = ArrayList()
-        val selectQuery = "SELECT * FROM $TBL_ACCOUNT"
+    fun getAllUser(): ArrayList<UserModel>{
+        val accList: ArrayList<UserModel> = ArrayList()
+        val selectQuery = "SELECT * FROM $TBL_USER"
         val db = this.readableDatabase
 
         val cursor: Cursor?
@@ -76,7 +100,7 @@ class SQLiteHelper(context: Context) :
                 jenis_kelamin = cursor.getString(cursor.getColumnIndex("jenis_kelamin"))
                 tinggi_badan = cursor.getInt(cursor.getColumnIndex("tinggi badan"))
 
-                val acc = AccountModel(id = id, name = name, jenis_kelamin = jenis_kelamin, tinggi_badan = tinggi_badan)
+                val acc = UserModel(id = id, name = name, jenis_kelamin = jenis_kelamin, tinggi_badan = tinggi_badan)
                 accList.add(acc)
             }while (cursor.moveToNext())
         }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/img_item_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            tools:text="Minuman" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,5 +1,8 @@
 package com.example.teenage
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -17,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(DrinkFragment())
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         supportActionBar?.hide()
 
         bottomNav.setOnNavigationItemSelectedListener {

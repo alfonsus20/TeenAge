@@ -21,9 +21,10 @@ class DrinkFragment : Fragment() {
 
         val fragmentMenu = MenuFragment()
 
+
         btnOpenMenu.setOnClickListener {
             requireActivity().supportFragmentManager?.beginTransaction()
-                .replace(R.id.fragment_container, fragmentMenu).commit()
+                .replace(R.id.fragment_container, fragmentMenu).addToBackStack(null).commit()
         }
 
         (activity as MainActivity).bottomNav.menu.getItem(0).isChecked = true

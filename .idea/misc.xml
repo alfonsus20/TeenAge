@@ -3,31 +3,52 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/bg_rounded.xml" value="0.2546875" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/circle.xml" value="0.14635416666666667" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/custom_button.xml" value="0.2703125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/home_wave.xml" value="0.2703125" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/ic_avatar.xml" value="0.2574074074074074" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/ic_baseline_local_drink_24.xml" value="0.2574074074074074" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/ic_wave.xml" value="0.2703125" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/item_grid_drink.xml" value="0.2574074074074074" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/target_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/font/font.xml" value="0.284375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/font/poppins.xml" value="0.16041666666666668" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_welcome.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_drink.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_history_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_home.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_notification.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_user.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/item_grid_drink.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/bg_rounded.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.215625" />
+        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.215625" />
+        <entry key="app/src/main/res/drawable/edittext_bg.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/ic_avatar.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_local_drink_24.xml" value="0.29322916666666665" />
+        <entry key="app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.29322916666666665" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.29322916666666665" />
+        <entry key="app/src/main/res/drawable/ic_bullseye_arrow.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_undraw_beer_celebration_re_0iqw.xml" value="0.21145833333333333" />
+        <entry key="app/src/main/res/drawable/ic_wave__1_.xml" value="0.215625" />
+        <entry key="app/src/main/res/drawable/textview_bg.xml" value="0.2109375" />
+        <entry key="app/src/main/res/layout/account.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/action_bar.xml" value="0.536" />
+        <entry key="app/src/main/res/layout/activity_account.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/layout/fragment_drink.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.2477355072463768" />
+        <entry key="app/src/main/res/layout/fragment_history_detail.xml" value="0.2477355072463768" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2477355072463768" />
+        <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.2477355072463768" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/item_grid_drink.xml" value="0.1953125" />
+        <entry key="app/src/main/res/layout/layout.xml" value="0.2477355072463768" />
+        <entry key="app/src/main/res/menu/actionbar.xml" value="0.264" />
+        <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.27708333333333335" />
       </map>
     </option>
   </component>

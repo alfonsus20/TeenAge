@@ -14,96 +14,87 @@ class SQLiteHelper(context: Context) :
 
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "teenage.db"
-        private const val TBL_USER = "tbl_user"
+        private const val TBL_USERS = "tbl_users"
         private const val ID = "id"
-        private const val NAME = "name"
-        private const val JENIS_KELAMIN = "jenis_kelamin"
-        private const val TINGGI_BADAN = "tinggi_badan"
+        private const val NAMA = "nama"
+        private const val GENDER = "gender"
+        private const val BERAT = "berat"
+        private const val TINGGI = "tinggi"
+        private const val TANGGAL_LAHIR = "tanggal_lahir"
 
-        private const val TBL_DRINK = "tbl_drink"
+        private const val TBL_DRINKS = "tbl_drinks"
         private const val NAME_DRINK = "name_drink"
-        private const val JUMLAH = "jumlah"
-        private const val TANGGAL = "tanggal"
+        private const val KADAR = "kadar"
+        private const val INDEX_GAMBAR = "index_gambar"
 
-        private const val TBL_WAKTU = "tbl_waktu"
+        private const val TBL_ALARMS = "tbl_alarms"
         private const val WAKTU = "waktu"
         private const val STATUS = "status"
+
+        private const val TBL_HISTORIES = "tbl_histories"
+        private const val USER_ID = "user_id"
+        private const val DRINK_ID = "drink_id"
+        private const val VOLUME = "volume"
+
+        // MASIH BELUM TAU WAKTU TIMESTAMPS GIMANA JADI BELUM DIMASUKKAN DI CREATE TABLE
+        private const val DRINK_TIME = "drink_time"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val CREATE_TABLE_USER = ("CREATE TABLE " + TBL_USER + "("
-                + ID + "INTEGER PRIMARY KEY," + NAME + "TEXT,"
-                + JENIS_KELAMIN + "TEXT," + TINGGI_BADAN + "INTEGER"
+        val CREATE_TABLE_USERS = ("CREATE TABLE " + TBL_USERS + "("
+                + ID + "INTEGER PRIMARY KEY," + NAMA + "TEXT,"
+                + GENDER + "TEXT," + BERAT + "INTEGER,"
+                + TINGGI + "INTEGER," + TANGGAL_LAHIR + "TEXT"
                 + ")" )
 
-        val CREATE_TABLE_DRINK = ("CREATE TABLE " + TBL_DRINK + "("
+        val CREATE_TABLE_DRINKS = ("CREATE TABLE " + TBL_DRINKS + "("
                 + ID + "INTEGER PRIMARY KEY," + NAME_DRINK + "TEXT,"
-                + JUMLAH + "INTEGER," + TANGGAL + "TEXT"
+                + KADAR + "INTEGER," + INDEX_GAMBAR + "TEXT"
                 + ")" )
 
-        val CREATE_TABLE_WAKTU = ("CREATE TABLE " + TBL_WAKTU + "("
-                + ID + "INTEGER PRIMARY KEY," + JUMLAH + "INTEGER,"
-                + WAKTU + "TEXT," + STATUS + "INTEGER"
+        val CREATE_TABLE_ALARMS = ("CREATE TABLE " + TBL_ALARMS + "("
+                + ID + "INTEGER PRIMARY KEY," + WAKTU + "TEXT,"
+                + STATUS + "INTEGER"
                 + ")" )
-        db?.execSQL(CREATE_TABLE_USER + CREATE_TABLE_DRINK + CREATE_TABLE_WAKTU)
+
+        val CREATE_TABLE_HISTORIES = ("CREATE TABLE " + TBL_HISTORIES + "("
+                + ID + "INTEGER PRIMARY KEY," + USER_ID + "INTEGER,"
+                + DRINK_ID + "INTEGER," + VOLUME + "INTEGER"
+                // COLUMN DRINK_TIME BELUM SOALNUA GAK TAU TIMESTAMP
+                + ")" )
+        db?.execSQL(CREATE_TABLE_USERS + CREATE_TABLE_DRINKS + CREATE_TABLE_ALARMS + CREATE_TABLE_HISTORIES )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        val DROP_TABLE_USER = "DROP TABLE IF EXISTS $TBL_USER"
-        val DROP_TABLE_DRINK = "DROP TABLE IF EXISTS $TBL_DRINK"
-        val DROP_TABLE_WAKTU = "DROP TABLE IF EXISTS $TBL_WAKTU"
+        val DROP_TABLE_USERS = "DROP TABLE IF EXISTS $TBL_USERS"
+        val DROP_TABLE_DRINKS= "DROP TABLE IF EXISTS $TBL_DRINKS"
+        val DROP_TABLE_ALARMS = "DROP TABLE IF EXISTS $TBL_ALARMS"
+        val DROP_TABLE_HISTORIES = "DROP TABLE IF EXISTS $TBL_HISTORIES"
 
-        db!!.execSQL(DROP_TABLE_USER + DROP_TABLE_DRINK + DROP_TABLE_WAKTU)
+        db!!.execSQL(DROP_TABLE_USERS + DROP_TABLE_DRINKS + DROP_TABLE_ALARMS + DROP_TABLE_HISTORIES )
 
         onCreate(db)
     }
 
-    fun insertUser(acc : UserModel): Long{
+    // Insert Yang Lain nanti menyesuaikan yang mau di insertkan
+    fun insertUser(user : UserModel): Long{
         val db = this.writableDatabase
 
         val contentValues = ContentValues()
-        contentValues.put(ID, acc.id)
-        contentValues.put(NAME, acc.name)
-        contentValues.put(JENIS_KELAMIN, acc.jenis_kelamin)
-        contentValues.put(TINGGI_BADAN, acc.tinggi_badan)
+        contentValues.put(ID, user.id)
+        contentValues.put(NAMA, user.nama)
+        contentValues.put(GENDER, user.berat)
+        contentValues.put(TINGGI, user.tinggi)
+        contentValues.put(BERAT, user.berat)
+        contentValues.put(TANGGAL_LAHIR, user.tanggal_lahir)
 
-        val success = db.insert(TBL_USER, null, contentValues)
+        val success = db.insert(TBL_USERS, null, contentValues)
         db.close()
         return success
     }
 
-    @SuppressLint("Range")
-    fun getAllUser(): ArrayList<UserModel>{
-        val accList: ArrayList<UserModel> = ArrayList()
-        val selectQuery = "SELECT * FROM $TBL_USER"
-        val db = this.readableDatabase
-
-        val cursor: Cursor?
-
-        try {
-            cursor = db.rawQuery(selectQuery, null)
-        }catch (e: Exception){
-            e.printStackTrace()
-            db.execSQL(selectQuery)
-            return ArrayList()
-        }
-
-        var id:Int
-        var name: String
-        var jenis_kelamin : String
-        var tinggi_badan : Int
-
-        if (cursor.moveToFirst()){
-            do{
-                id = cursor.getInt(cursor.getColumnIndex("id"))
-                name = cursor.getString(cursor.getColumnIndex("name"))
-                jenis_kelamin = cursor.getString(cursor.getColumnIndex("jenis_kelamin"))
-                tinggi_badan = cursor.getInt(cursor.getColumnIndex("tinggi badan"))
-
-                val acc = UserModel(id = id, name = name, jenis_kelamin = jenis_kelamin, tinggi_badan = tinggi_badan)
-                accList.add(acc)
-            }while (cursor.moveToNext())
-        }
-        return accList
+    fun userQuery(): Cursor {
+        val db = this.writableDatabase
+        return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
     }
 }

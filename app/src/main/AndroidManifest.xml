@@ -11,7 +11,8 @@
         android:theme="@style/Theme.TeenAge">
         <activity
             android:name=".Account"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -21,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

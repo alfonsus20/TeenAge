@@ -10,6 +10,15 @@ object DrinksData {
         "Rice Drink"
     )
 
+    private val waterRate = doubleArrayOf(
+        1.0,
+        0.5,
+        0.98,
+        0.95,
+        0.4,
+        0.89
+    )
+
     private val drinkPictures = intArrayOf(
         R.drawable.water,
         R.drawable.sport_drink,
@@ -23,10 +32,11 @@ object DrinksData {
         get() {
             val list = arrayListOf<Drink>()
 
-            for (position in drinkNames.indices){
+            for (position in drinkNames.indices) {
                 val drink = Drink()
                 drink.name = drinkNames[position]
                 drink.picture = drinkPictures[position]
+                drink.waterRate = waterRate[position]
                 list.add(drink)
             }
 

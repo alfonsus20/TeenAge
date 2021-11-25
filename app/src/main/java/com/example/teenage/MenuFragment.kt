@@ -3,6 +3,7 @@ package com.example.teenage
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,9 @@ class MenuFragment : NavigationChildFragment() {
         (activity as AppCompatActivity).supportActionBar?.show()
 
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
+
+        val myDB = SQLiteHelper(activity as AppCompatActivity)
+        myDB.insertDrinks()
 
         rvDrinks = view.findViewById(R.id.rv_drinks)
         rvDrinks.setHasFixedSize(true)

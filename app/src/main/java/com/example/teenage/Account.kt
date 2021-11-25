@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
+import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
@@ -101,6 +102,9 @@ class Account : AppCompatActivity() {
 
                 val target: Double
                 val usia = getAge()
+
+                Log.d("usia ", usia.toString())
+
                 val tinggi = etHeight.text.toString().toInt()
                 val berat = etWeight.text.toString().toInt()
 
@@ -108,7 +112,7 @@ class Account : AppCompatActivity() {
                 if (gender.equals("male")) {
                     target = 2.447 - (0.09145 * usia) + (0.1074 * tinggi) + (0.3362 * berat)
                 } else {
-                    target = 2.097 - (0.1069 * tinggi) + (0.2466 * berat)
+                    target = -2.097 + (0.1069 * tinggi) + (0.2466 * berat)
                 }
 
                 myDB.insertUser(

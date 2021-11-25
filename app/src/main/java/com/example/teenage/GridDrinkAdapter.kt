@@ -16,6 +16,8 @@ import com.bumptech.glide.request.RequestOptions
 class GridDrinkAdapter(val listDrink: ArrayList<Drink>) :
     RecyclerView.Adapter<GridDrinkAdapter.GridViewHolder>() {
     var mSelectedDrink = -1
+    var selectedDrinkIndex = -1
+    var selectedDrinkRate = 0.0
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -59,6 +61,8 @@ class GridDrinkAdapter(val listDrink: ArrayList<Drink>) :
                     if (mSelectedDrink != adapterPosition) {
                         notifyItemChanged(mSelectedDrink)
                         mSelectedDrink = adapterPosition
+                        selectedDrinkIndex = listDrink[adapterPosition].id
+                        selectedDrinkRate = listDrink[adapterPosition].waterRate
                     }
                     Toast.makeText(itemView.context, textView.text.toString(), Toast.LENGTH_SHORT)
                         .show()

@@ -10,12 +10,11 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/tv_drink_volume"
             android:layout_width="155dp"
             android:layout_height="44dp"
             android:ems="10"
             android:inputType="number"
-            android:text="12"
             android:textColor="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -49,9 +48,9 @@
             android:text="mililiter"
             android:textColor="@color/primary"
             android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_drink_volume"
+            app:layout_constraintStart_toStartOf="@+id/tv_drink_volume"
+            app:layout_constraintTop_toBottomOf="@+id/tv_drink_volume" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

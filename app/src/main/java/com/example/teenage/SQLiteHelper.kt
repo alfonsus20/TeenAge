@@ -61,7 +61,8 @@ class SQLiteHelper(context: Context) :
 
         val CREATE_TABLE_HISTORIES = ("CREATE TABLE " + TBL_HISTORIES + "("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_ID + " INTEGER, "
-                + DRINK_ID + " INTEGER, " + VOLUME + " INTEGER,"
+                + DRINK_ID + " INTEGER, " + VOLUME + " INTEGER, "
+                + DRINK_TIME + " TEXT,"
                 + " FOREIGN KEY (" + USER_ID + ") REFERENCES " + TBL_USERS + "(id),"
                 + " FOREIGN KEY (" + DRINK_ID + ") REFERENCES " + TBL_DRINKS + "(id)"
                 + ");")
@@ -138,6 +139,16 @@ class SQLiteHelper(context: Context) :
     fun getUsers(): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
+    }
+
+    fun getUserById(userId : Int): Cursor {
+        val db = this.writableDatabase
+        return db!!.rawQuery("SELECT * FROM " + TBL_USERS + " WHERE " + ID + " = " + userId, null)
+    }
+
+    fun getUserHistory(userId : Int) : Cursor{
+        val db = this.writableDatabase
+        return db!!.rawQuery("SELECT * FROM " + TBL_HISTORIES + " WHERE " + USER_ID + " = " + userId, null)
     }
 
     fun getDrinks(): Cursor {

@@ -14,13 +14,9 @@ class DrinkFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view: View = inflater!!.inflate(R.layout.fragment_drink, container, false)
-
         val btnOpenMenu: Button = view.findViewById(R.id.btn_open_menu)
-
         val fragmentMenu = MenuFragment()
-
 
         btnOpenMenu.setOnClickListener {
             requireActivity().supportFragmentManager?.beginTransaction()

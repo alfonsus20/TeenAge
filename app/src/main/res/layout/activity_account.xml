@@ -6,26 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Account">
 
-    <TextView
-        android:id="@+id/sleepTimeText"
-        android:layout_width="147dp"
-        android:layout_height="48dp"
-        android:background="@drawable/edittext_bg"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="18:30"
-        android:textColor="@color/primary_variant"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="337dp"
         android:layout_height="0dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
@@ -37,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="40dp"
             android:text="Gender"
             android:textColor="@color/primary"
             android:textSize="16sp" />
@@ -92,78 +78,94 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="337dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/edittext_bg"
         android:ems="10"
+        android:hint="Name"
         android:inputType="textPersonName"
+        android:paddingLeft="24dp"
         android:text="Name"
         android:textColor="@color/primary_variant"
-        android:paddingLeft="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/editTextNumber"
-        android:layout_width="337dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edittext_bg"
         android:ems="10"
+        android:hint="Weight (kg)"
         android:inputType="number"
-        android:text="Weight"
         android:paddingLeft="20dp"
+        android:text="Weight"
         android:textColor="@color/primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <EditText
+        android:id="@+id/editTextNumber2"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:hint="Height (cm)"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:text="Height"
+        android:textColor="@color/primary"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <Button
+        android:id="@+id/btnAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginEnd="128dp"
+        android:backgroundTint="@color/secondary"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Wake Time"
+        android:layout_marginTop="48dp"
+        android:text="Birth Date"
         android:textColor="@color/primary"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/birthDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Sleep Time"
-        android:textColor="@color/primary"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/wakeTimeText"
-        android:layout_width="147dp"
-        android:layout_height="48dp"
         android:background="@drawable/edittext_bg"
         android:clickable="true"
         android:gravity="center"
-        android:text="18:30"
-        android:textColor="@color/primary_variant"
-        android:textSize="14sp"
+        android:minHeight="48dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Pick Date"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumber2"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
-        android:backgroundTint="@color/secondary"
-        android:text="Done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sleepTimeText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

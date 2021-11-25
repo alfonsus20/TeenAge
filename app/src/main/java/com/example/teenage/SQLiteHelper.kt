@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -135,7 +134,7 @@ class SQLiteHelper(context: Context) :
         return db!!.rawQuery("SELECT * FROM " + TBL_HISTORIES, null)
     }
 
-    fun drinkQuery(): Cursor {
+    fun getDrinks(): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_DRINKS, null)
     }

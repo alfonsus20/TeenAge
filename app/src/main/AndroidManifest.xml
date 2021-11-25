@@ -4,15 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_depan"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_depan"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeenAge">
         <activity
             android:name=".Account"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true">

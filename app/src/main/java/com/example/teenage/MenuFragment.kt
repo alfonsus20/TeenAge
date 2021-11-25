@@ -30,14 +30,20 @@ class MenuFragment : NavigationChildFragment() {
         val myDB = SQLiteHelper(activity as AppCompatActivity)
         val cursor = myDB.getDrinks()
 
-        if(cursor.count == 0){
+        if (cursor.count == 0) {
             myDB.insertDrinks()
         }
 
         val cursor2 = myDB.getDrinks()
 
-        while(cursor2.moveToNext()){
-            list.add(Drink(cursor2.getString(1), cursor2.getInt(3), cursor2.getDouble(2)))
+        while (cursor2.moveToNext()) {
+            list.add(
+                Drink(
+                    cursor2.getString(1),
+                    DrinksData.drinkPictures[cursor2.getInt(3)],
+                    cursor2.getDouble(2)
+                )
+            )
         }
 
         rvDrinks = view.findViewById(R.id.rv_drinks)

@@ -19,7 +19,7 @@ object DrinksData {
         0.89
     )
 
-    private val drinkPictures = intArrayOf(
+    val drinkPictures = intArrayOf(
         R.drawable.water,
         R.drawable.sport_drink,
         R.drawable.zero_sport_drink,

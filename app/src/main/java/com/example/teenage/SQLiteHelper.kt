@@ -104,11 +104,11 @@ class SQLiteHelper(context: Context) :
         val db = this.writableDatabase
         val drinkData = DrinksData.listData
 
-        for (drink in drinkData) {
+        for ((index,drink) in drinkData.withIndex()) {
             val contentValues = ContentValues()
             contentValues.put(NAME_DRINK, drink.name)
             contentValues.put(KADAR, drink.waterRate)
-            contentValues.put(INDEX_GAMBAR, drink.picture)
+            contentValues.put(INDEX_GAMBAR, index)
             db.insert(TBL_DRINKS, null, contentValues)
         }
 

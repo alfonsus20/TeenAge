@@ -36,7 +36,6 @@ class HistoryFragment : Fragment() {
             }
 
             val date = "$i-$monthStr-$dayStr"
-            Log.d("Calender", date)
 
             val bundle = Bundle()
             bundle.putString("date", date)

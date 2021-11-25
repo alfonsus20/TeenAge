@@ -84,13 +84,12 @@ class SQLiteHelper(context: Context) :
         onCreate(db)
     }
 
-    // Insert Yang Lain nanti menyesuaikan yang mau di insertkan
     fun insertUser(user: UserModel): Long {
         val db = this.writableDatabase
         val contentValues = ContentValues()
 
         contentValues.put(NAMA, user.nama)
-        contentValues.put(GENDER, user.berat)
+        contentValues.put(GENDER, user.gender)
         contentValues.put(TINGGI, user.tinggi)
         contentValues.put(BERAT, user.berat)
         contentValues.put(TANGGAL_LAHIR, user.tanggal_lahir)
@@ -132,6 +131,11 @@ class SQLiteHelper(context: Context) :
     fun historyQuery(): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_HISTORIES, null)
+    }
+
+    fun getUsers() :Cursor {
+        val db = this.writableDatabase
+        return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
     }
 
     fun getDrinks(): Cursor {

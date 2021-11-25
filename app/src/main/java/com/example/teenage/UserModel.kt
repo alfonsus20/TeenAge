@@ -8,6 +8,7 @@ data class UserModel (
     var tinggi: Int? = null,
     var berat: Int? = null,
     var tanggal_lahir: String? = null,
+    var target:Int? = null
 ){
     companion object{
 

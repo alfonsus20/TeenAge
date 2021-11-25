@@ -21,6 +21,7 @@ class SQLiteHelper(context: Context) :
         private const val GENDER = "gender"
         private const val BERAT = "berat"
         private const val TINGGI = "tinggi"
+        private const val TARGET = "target"
         private const val TANGGAL_LAHIR = "tanggal_lahir"
 
         private const val TBL_DRINKS = "tbl_drinks"
@@ -45,7 +46,7 @@ class SQLiteHelper(context: Context) :
         val CREATE_TABLE_USERS = ("CREATE TABLE " + TBL_USERS + "("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAMA + " TEXT, "
                 + GENDER + " TEXT, " + BERAT + " INTEGER, "
-                + TINGGI + " INTEGER, " + TANGGAL_LAHIR + " TEXT"
+                + TINGGI + " INTEGER, " + TANGGAL_LAHIR + " TEXT, " + TARGET + " INTEGER"
                 + ");")
 
         val CREATE_TABLE_DRINKS = ("CREATE TABLE " + TBL_DRINKS + "("
@@ -61,8 +62,8 @@ class SQLiteHelper(context: Context) :
         val CREATE_TABLE_HISTORIES = ("CREATE TABLE " + TBL_HISTORIES + "("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_ID + " INTEGER, "
                 + DRINK_ID + " INTEGER, " + VOLUME + " INTEGER,"
-                + " FOREIGN KEY ("+ USER_ID +") REFERENCES " + TBL_USERS + "(id),"
-                + " FOREIGN KEY ("+ DRINK_ID +") REFERENCES " + TBL_DRINKS + "(id)"
+                + " FOREIGN KEY (" + USER_ID + ") REFERENCES " + TBL_USERS + "(id),"
+                + " FOREIGN KEY (" + DRINK_ID + ") REFERENCES " + TBL_DRINKS + "(id)"
                 + ");")
         db?.execSQL(CREATE_TABLE_USERS)
         db?.execSQL(CREATE_TABLE_DRINKS)
@@ -93,6 +94,7 @@ class SQLiteHelper(context: Context) :
         contentValues.put(TINGGI, user.tinggi)
         contentValues.put(BERAT, user.berat)
         contentValues.put(TANGGAL_LAHIR, user.tanggal_lahir)
+        contentValues.put(TARGET, user.target)
 
         val result = db.insert(TBL_USERS, null, contentValues)
         db.close()
@@ -103,7 +105,7 @@ class SQLiteHelper(context: Context) :
         val db = this.writableDatabase
         val drinkData = DrinksData.listData
 
-        for ((index,drink) in drinkData.withIndex()) {
+        for ((index, drink) in drinkData.withIndex()) {
             val contentValues = ContentValues()
             contentValues.put(NAME_DRINK, drink.name)
             contentValues.put(KADAR, drink.waterRate)
@@ -133,7 +135,7 @@ class SQLiteHelper(context: Context) :
         return db!!.rawQuery("SELECT * FROM " + TBL_HISTORIES, null)
     }
 
-    fun getUsers() :Cursor {
+    fun getUsers(): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
     }

@@ -13,9 +13,12 @@ import android.text.Html
 import android.text.TextUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.math.roundToInt
 
 class Account : AppCompatActivity() {
     var cal = Calendar.getInstance()
@@ -25,6 +28,11 @@ class Account : AppCompatActivity() {
     lateinit var etName: EditText
     lateinit var etWeight: EditText
     lateinit var etHeight: EditText
+    var intMDay: Int = 0
+    var intMMonth: Int = 0
+    var intMYear: Int = 0
+
+
     var tanggalLahir: String = ""
     val myDB = SQLiteHelper(this)
 
@@ -58,6 +66,10 @@ class Account : AppCompatActivity() {
                     var monthStr = (mMonth + 1).toString()
                     var dayStr = mDay.toString()
 
+                    intMDay = mDay
+                    intMMonth = mMonth + 1
+                    intMYear = mYear
+
                     if (mMonth < 10) {
                         monthStr = "0" + monthStr
                     }
@@ -87,13 +99,26 @@ class Account : AppCompatActivity() {
                 val gender =
                     findViewById<RadioButton>(selectedGenderId).text.toString().toLowerCase()
 
+                val target: Double
+                val usia = getAge()
+                val tinggi = etHeight.text.toString().toInt()
+                val berat = etWeight.text.toString().toInt()
+
+
+                if (gender.equals("male")) {
+                    target = 2.447 - (0.09145 * usia) + (0.1074 * tinggi) + (0.3362 * berat)
+                } else {
+                    target = 2.097 - (0.1069 * tinggi) + (0.2466 * berat)
+                }
+
                 myDB.insertUser(
                     UserModel(
                         etName.text.toString(),
                         gender,
                         etHeight.text.toString().toInt(),
                         etWeight.text.toString().toInt(),
-                        tanggalLahir
+                        tanggalLahir,
+                        (target * 1000).roundToInt()
                     )
                 )
 
@@ -110,7 +135,6 @@ class Account : AppCompatActivity() {
             Toast.makeText(this, "Masukkan Nama", Toast.LENGTH_LONG).show()
             return false
         }
-
 
         if (selectedGenderId == -1) {
             Toast.makeText(this, "Pilih Gender", Toast.LENGTH_LONG).show()
@@ -133,5 +157,13 @@ class Account : AppCompatActivity() {
         }
 
         return true
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getAge(): Int {
+        return Period.between(
+            LocalDate.of(intMYear, intMMonth, intMMonth),
+            LocalDate.now()
+        ).years
     }
 }

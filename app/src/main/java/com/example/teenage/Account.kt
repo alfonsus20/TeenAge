@@ -28,8 +28,8 @@ class Account : AppCompatActivity() {
 
         birthDateText.setOnClickListener {
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                var date = LocalDate.of(mYear, mMonth, mDay).format(formatter)
-                birthDateText.setText(date.toString())
+                var date = LocalDate.of(mYear, mMonth+1, mDay).format(formatter)
+                birthDateText.text = date.toString()
             },year, month, day )
             dpd.show()
         }

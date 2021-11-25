@@ -6,52 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".Account">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="337dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
 
-        <TextView
-            android:id="@+id/textView4"
+        <RadioButton
+            android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="40dp"
-            android:text="Gender"
-            android:textColor="@color/primary"
-            android:textSize="16sp" />
+            android:layout_gravity="right"
+            android:layout_marginEnd="15dp"
+            android:text="Man"
+            android:textColor="@color/primary_variant" />
 
-        <RadioGroup
+        <RadioButton
+            android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="15dp"
+            android:text="Woman"
+            android:textColor="@color/primary_variant" />
+    </RadioGroup>
 
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginEnd="15dp"
-                android:text="Man"
-                android:textColor="@color/primary_variant" />
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="Woman"
-                android:textColor="@color/primary_variant" />
-        </RadioGroup>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="Gender"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/textView3"
@@ -98,7 +90,7 @@
         android:id="@+id/editTextNumber"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/edittext_bg"
         android:ems="10"
         android:hint="Weight (kg)"
@@ -107,8 +99,9 @@
         android:text="Weight"
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <EditText
         android:id="@+id/editTextNumber2"
@@ -129,15 +122,14 @@
 
     <Button
         android:id="@+id/btnAccount"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/secondary"
         android:text="Done"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthDateText" />
 
     <TextView
         android:id="@+id/textView5"

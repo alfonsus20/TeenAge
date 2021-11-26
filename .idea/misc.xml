@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kuliah/Projek/PSI/TeenAge/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Kuliah/Projek/PSI/TeenAge/app/src/main/res/layout/activity_notif.xml" value="0.1" />
+        <entry key="..\:/Kuliah/Projek/PSI/TeenAge/app/src/main/res/layout/fragment_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/bg_rounded.xml" value="0.2546875" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/circle.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/custom_button.xml" value="0.2703125" />

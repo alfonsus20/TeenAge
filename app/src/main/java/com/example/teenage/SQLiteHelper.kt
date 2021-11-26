@@ -141,14 +141,17 @@ class SQLiteHelper(context: Context) :
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
     }
 
-    fun getUserById(userId : Int): Cursor {
+    fun getUserById(userId: Int): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS + " WHERE " + ID + " = " + userId, null)
     }
 
-    fun getUserHistory(userId : Int) : Cursor{
+    fun getUserHistory(userId: Int): Cursor {
         val db = this.writableDatabase
-        return db!!.rawQuery("SELECT * FROM " + TBL_HISTORIES + " WHERE " + USER_ID + " = " + userId, null)
+        return db!!.rawQuery(
+            "SELECT * FROM " + TBL_HISTORIES + " INNER JOIN " + TBL_DRINKS + " ON " + TBL_DRINKS + ".id = " + TBL_HISTORIES + ".drink_id"+ " WHERE " + USER_ID + "=" + userId ,
+            null
+        )
     }
 
     fun getDrinks(): Cursor {

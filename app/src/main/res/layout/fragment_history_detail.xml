@@ -22,7 +22,7 @@
             tools:text="18 Oktober 2021" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBar_linear"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -32,54 +32,55 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_history_detail" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/tv_done_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-            app:layout_constraintEnd_toStartOf="@+id/progressBar"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_linear"
+            app:layout_constraintEnd_toStartOf="@+id/progressBar_linear"
             app:layout_constraintHorizontal_bias="0.613"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_linear"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/tv_target_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_linear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.513"
-            app:layout_constraintStart_toEndOf="@+id/progressBar"
-            app:layout_constraintTop_toTopOf="@+id/progressBar"
+            app:layout_constraintStart_toEndOf="@+id/progressBar_linear"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_linear"
             app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
-            android:id="@+id/progress_bar_drink"
+            android:id="@+id/progress_bar_circle"
             android:layout_width="240dp"
             android:layout_height="200dp"
             android:layout_marginTop="48dp"
             android:indeterminateOnly="false"
             android:progress="60"
             android:progressDrawable="@drawable/circle"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar"
-            app:layout_constraintStart_toStartOf="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar_linear"
+            app:layout_constraintStart_toStartOf="@+id/progressBar_linear"
             app:layout_constraintTop_toBottomOf="@+id/tv_history_detail" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/percentage_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="60%"
-            app:layout_constraintBottom_toBottomOf="@+id/progress_bar_drink"
-            app:layout_constraintEnd_toEndOf="@+id/progress_bar_drink"
-            app:layout_constraintStart_toStartOf="@+id/progress_bar_drink"
-            app:layout_constraintTop_toTopOf="@+id/progress_bar_drink" />
+            app:layout_constraintBottom_toBottomOf="@+id/progress_bar_circle"
+            app:layout_constraintEnd_toEndOf="@+id/progress_bar_circle"
+            app:layout_constraintStart_toStartOf="@+id/progress_bar_circle"
+            app:layout_constraintTop_toTopOf="@+id/progress_bar_circle" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -99,7 +100,7 @@
             android:text="History"
             android:textColor="@color/primary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progress_bar_drink" />
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar_circle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

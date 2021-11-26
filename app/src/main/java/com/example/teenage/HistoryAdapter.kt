@@ -25,8 +25,8 @@ class HistoryAdapter(val listHistory: ArrayList<HistoryCompleteModel>) :
 
         Glide.with(holder.itemView.context)
             .load(DrinksData.drinkPictures[history.index_gambar])
-            .apply(RequestOptions().override(55, 55))
             .into(holder.imgDrink)
+
         holder.tvDrinkName.text = history.name_drink
         holder.tvVolume.text = history.volume.toString() + " ml"
         holder.tvTime.text = history.jam

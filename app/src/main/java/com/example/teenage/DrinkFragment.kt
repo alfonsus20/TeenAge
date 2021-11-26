@@ -2,7 +2,6 @@ package com.example.teenage
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,7 @@ class DrinkFragment : Fragment() {
         val view: View = inflater!!.inflate(R.layout.fragment_drink, container, false)
         val btnOpenMenu: Button = view.findViewById(R.id.btn_open_menu)
 
-        progressBarDrink = view.findViewById(R.id.progress_bar_drink)
+        progressBarDrink = view.findViewById(R.id.progress_bar_circle)
         progressBarDrink.max = 0
         progressBarDrink.progress = 0
 

@@ -100,19 +100,17 @@ class Account : AppCompatActivity() {
                 val gender =
                     findViewById<RadioButton>(selectedGenderId).text.toString().toLowerCase()
 
-                val target: Double
+                val target: Int
                 val usia = getAge()
-
-                Log.d("usia ", usia.toString())
-
                 val tinggi = etHeight.text.toString().toInt()
                 val berat = etWeight.text.toString().toInt()
 
-
-                if (gender.equals("male")) {
-                    target = 2.447 - (0.09145 * usia) + (0.1074 * tinggi) + (0.3362 * berat)
+                if (berat <= 10) {
+                    target = 1000
+                } else if (berat <= 20) {
+                    target = 1500
                 } else {
-                    target = -2.097 + (0.1069 * tinggi) + (0.2466 * berat)
+                    target = 1500 + (berat - 20) * 20
                 }
 
                 myDB.insertUser(
@@ -122,7 +120,7 @@ class Account : AppCompatActivity() {
                         etHeight.text.toString().toInt(),
                         etWeight.text.toString().toInt(),
                         tanggalLahir,
-                        (target * 1000).roundToInt()
+                        target
                     )
                 )
 

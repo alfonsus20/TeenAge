@@ -29,6 +29,9 @@ class Account : AppCompatActivity() {
     lateinit var etName: EditText
     lateinit var etWeight: EditText
     lateinit var etHeight: EditText
+    lateinit var radioMan: RadioButton
+    lateinit var radioWoman: RadioButton
+
     var intMDay: Int = 0
     var intMMonth: Int = 0
     var intMYear: Int = 0
@@ -36,6 +39,7 @@ class Account : AppCompatActivity() {
 
     var tanggalLahir: String = ""
     val myDB = SQLiteHelper(this)
+    var userAlreadyExists = false
 
     @SuppressLint("RestrictedApi")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -51,11 +55,54 @@ class Account : AppCompatActivity() {
         supportActionBar?.show()
 
         setContentView(R.layout.activity_account)
+
+        radioGroupGender = findViewById<RadioGroup>(R.id.radioGroupGender)
+        btnAccount = findViewById<Button>(R.id.btnAccount)
+        etName = findViewById<EditText>(R.id.editTextName)
+        etHeight = findViewById<EditText>(R.id.editTextHeight)
+        etWeight = findViewById<EditText>(R.id.editTextWeight)
+        radioMan = findViewById<RadioButton>(R.id.radioButtonMan)
+        radioWoman = findViewById<RadioButton>(R.id.radioButtonWoman)
+
         var formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-        val year = cal.get(Calendar.YEAR)
-        val month = cal.get(Calendar.MONTH)
-        val day = cal.get(Calendar.DAY_OF_MONTH)
+        var year = cal.get(Calendar.YEAR)
+        var month = cal.get(Calendar.MONTH)
+        var day = cal.get(Calendar.DAY_OF_MONTH)
         birthDateText = this.findViewById(R.id.birthDateText)
+
+        val cursorCurrentUser = myDB.getUserById(1)
+
+        if (cursorCurrentUser.moveToFirst()) {
+            userAlreadyExists = true
+
+            etName.setText(cursorCurrentUser.getString(1))
+            etWeight.setText(cursorCurrentUser.getInt(3).toString())
+            etHeight.setText(cursorCurrentUser.getInt(4).toString())
+            if (cursorCurrentUser.getString(2).equals("male")) {
+                radioMan.isChecked = true
+            } else {
+                radioWoman.isChecked = true
+            }
+
+            val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val date = LocalDate.parse(cursorCurrentUser.getString(5), dateFormat)
+            val formattedDate =
+                "${date.dayOfMonth} ${
+                    date.month.toString().toLowerCase().capitalize()
+                } ${date.year}"
+
+            year = date.year
+            month = date.monthValue
+            day = date.dayOfMonth
+
+            tanggalLahir =
+                "$year-${if (month < 10) "0" + month else month}-${if (day < 10) "0" + day else day}"
+
+            month -= 1
+
+            birthDateText.setText(formattedDate)
+            cursorCurrentUser.close()
+        }
 
         birthDateText.setOnClickListener {
             val dpd = DatePickerDialog(
@@ -88,12 +135,6 @@ class Account : AppCompatActivity() {
             dpd.show()
         }
 
-        radioGroupGender = findViewById<RadioGroup>(R.id.radioGroupGender)
-        btnAccount = findViewById<Button>(R.id.btnAccount)
-        etName = findViewById<EditText>(R.id.editTextName)
-        etHeight = findViewById<EditText>(R.id.editTextHeight)
-        etWeight = findViewById<EditText>(R.id.editTextWeight)
-
         btnAccount.setOnClickListener {
             if (checkAllField()) {
                 val selectedGenderId = radioGroupGender.checkedRadioButtonId
@@ -101,7 +142,6 @@ class Account : AppCompatActivity() {
                     findViewById<RadioButton>(selectedGenderId).text.toString().toLowerCase()
 
                 val target: Int
-                val usia = getAge()
                 val tinggi = etHeight.text.toString().toInt()
                 val berat = etWeight.text.toString().toInt()
 
@@ -113,16 +153,36 @@ class Account : AppCompatActivity() {
                     target = 1500 + (berat - 20) * 20
                 }
 
-                myDB.insertUser(
-                    UserModel(
-                        etName.text.toString(),
-                        gender,
-                        etHeight.text.toString().toInt(),
-                        etWeight.text.toString().toInt(),
-                        tanggalLahir,
-                        target
+                if (userAlreadyExists) {
+                    myDB.updateUser(
+                        UserModel(
+                            etName.text.toString(),
+                            gender,
+                            etHeight.text.toString().toInt(),
+                            etWeight.text.toString().toInt(),
+                            tanggalLahir,
+                            target,
+                            1
+                        )
                     )
-                )
+                    Toast.makeText(
+                        MainActivity@ this,
+                        "Data berhasil diperbarui",
+                        Toast.LENGTH_LONG
+                    )
+                } else {
+                    myDB.insertUser(
+                        UserModel(
+                            etName.text.toString(),
+                            gender,
+                            etHeight.text.toString().toInt(),
+                            etWeight.text.toString().toInt(),
+                            tanggalLahir,
+                            target
+                        )
+                    )
+                }
+                Toast.makeText(MainActivity@ this, "Data berhasil disimpan", Toast.LENGTH_LONG)
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -161,11 +221,4 @@ class Account : AppCompatActivity() {
         return true
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getAge(): Int {
-        return Period.between(
-            LocalDate.of(intMYear, intMMonth, intMMonth),
-            LocalDate.now()
-        ).years
-    }
 }

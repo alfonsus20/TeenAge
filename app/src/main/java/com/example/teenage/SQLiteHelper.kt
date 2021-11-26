@@ -141,6 +141,20 @@ class SQLiteHelper(context: Context) :
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
     }
 
+    fun updateUser(user: UserModel) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(NAMA, user.nama)
+        contentValues.put(GENDER, user.gender)
+        contentValues.put(TINGGI, user.tinggi)
+        contentValues.put(BERAT, user.berat)
+        contentValues.put(TANGGAL_LAHIR, user.tanggal_lahir)
+        contentValues.put(TARGET, user.target)
+
+        db.update(TBL_USERS, contentValues, "id = " + user.id, null)
+    }
+
     fun getUserById(userId: Int): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS + " WHERE " + ID + " = " + userId, null)
@@ -149,7 +163,7 @@ class SQLiteHelper(context: Context) :
     fun getUserHistory(userId: Int): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery(
-            "SELECT * FROM " + TBL_HISTORIES + " INNER JOIN " + TBL_DRINKS + " ON " + TBL_DRINKS + ".id = " + TBL_HISTORIES + ".drink_id"+ " WHERE " + USER_ID + "=" + userId ,
+            "SELECT * FROM " + TBL_HISTORIES + " INNER JOIN " + TBL_DRINKS + " ON " + TBL_DRINKS + ".id = " + TBL_HISTORIES + ".drink_id" + " WHERE " + USER_ID + "=" + userId,
             null
         )
     }

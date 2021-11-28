@@ -2,12 +2,8 @@ package com.example.teenage
 
 
 data class AlarmModel (
+    var time: String = "",
+    var status: Boolean = false,
     var id: Int? = null,
-    var waktu: String? = null,
-    var status: Int? = null,
 ){
-    companion object{
-
-    }
-
 }

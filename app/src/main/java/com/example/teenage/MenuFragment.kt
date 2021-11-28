@@ -36,8 +36,8 @@ class MenuFragment : NavigationChildFragment() {
 
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
 
-        etDrinkVolume = view.findViewById<EditText>(R.id.tv_drink_volume)
-        btnOk = view.findViewById<Button>(R.id.btn_ok)
+        etDrinkVolume = view.findViewById(R.id.tv_drink_volume)
+        btnOk = view.findViewById(R.id.btn_ok)
 
         val myDB = SQLiteHelper(activity as AppCompatActivity)
         val cursor = myDB.getDrinks()

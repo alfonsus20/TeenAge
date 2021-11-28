@@ -70,11 +70,4 @@ class GridDrinkAdapter(val listDrink: ArrayList<Drink>) :
             })
         }
     }
-
-    fun getSelected(): Drink? {
-        if (mSelectedDrink != -1) {
-            return listDrink.get(mSelectedDrink)
-        }
-        return null
-    }
 }

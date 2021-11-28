@@ -7,6 +7,7 @@
         <entry key="..\:/Kuliah/Projek/PSI/TeenAge/app/src/main/res/layout/activity_notif.xml" value="0.1" />
         <entry key="..\:/Kuliah/Projek/PSI/TeenAge/app/src/main/res/layout/fragment_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/bg_rounded.xml" value="0.2546875" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/border_bottom.xml" value="0.2703125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/circle.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/custom_button.xml" value="0.2703125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/home_wave.xml" value="0.2703125" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/font/poppins.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_notif.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_welcome.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_drink.xml" value="0.2" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_menu.xml" value="0.4" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_notification.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_user.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/item_alarm.xml" value="0.4" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/item_grid_drink.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/item_history.xml" value="0.4" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />

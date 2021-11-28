@@ -1,19 +1,20 @@
 package com.example.teenage
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import java.util.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class NotificationFragment : Fragment() {
+    lateinit var rvAlarms: RecyclerView
+    var listAlarm = arrayListOf<AlarmModel>()
+
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,11 +22,27 @@ class NotificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_notification, container, false)
-        val reminderTextView: TextView = view.findViewById(R.id.textView18)
-        reminderTextView.setOnClickListener {
-            val intent = Intent(activity, NotificationActivity::class.java)
-            startActivity(intent)
-        }
+        rvAlarms = view.findViewById(R.id.rv_alarms)
+        rvAlarms.layoutManager = LinearLayoutManager(activity)
+
+        listAlarm.add(
+            AlarmModel("09:00", false),
+        )
+
+        listAlarm.add(
+            AlarmModel("08:00", true),
+        )
+
+        listAlarm.add(
+            AlarmModel("10:20", false),
+        )
+
+        listAlarm.add(
+            AlarmModel("11:00", true),
+        )
+
+
+        rvAlarms.adapter = AlarmAdapter(listAlarm, activity as MainActivity)
 
         (activity as MainActivity).bottomNav.menu.getItem(2).isChecked = true
         return view

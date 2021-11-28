@@ -181,6 +181,7 @@ class Account : AppCompatActivity() {
                             target
                         )
                     )
+                    myDB.insertAlarms()
                 }
                 Toast.makeText(MainActivity@ this, "Data berhasil disimpan", Toast.LENGTH_LONG)
 

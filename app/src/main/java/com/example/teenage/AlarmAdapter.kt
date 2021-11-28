@@ -1,6 +1,8 @@
 package com.example.teenage
 
+import android.app.TimePickerDialog
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +10,16 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class AlarmAdapter(val listAlarms: ArrayList<AlarmModel>, val context: Context) :
+class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) :
     RecyclerView.Adapter<AlarmAdapter.AlarmViewHolder>() {
+
+    val myDB = SQLiteHelper(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         var view: View =
@@ -19,16 +27,36 @@ class AlarmAdapter(val listAlarms: ArrayList<AlarmModel>, val context: Context) 
         return AlarmViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
         holder.tvTime.text = listAlarms[position].time
         holder.switch.isChecked = listAlarms[position].status
 
         holder.btnDeleteAlarm.setOnClickListener {
-            Toast.makeText(context, "delete button", Toast.LENGTH_SHORT).show()
+            myDB.deleteAlarm(listAlarms[position].id!!)
+            listAlarms.removeAt(position)
+            notifyItemRemoved(position)
+            notifyDataSetChanged()
         }
 
         holder.btnEditAlarm.setOnClickListener {
-            Toast.makeText(context, "edit button", Toast.LENGTH_SHORT).show()
+            var df = SimpleDateFormat("HH:mm").parse(listAlarms[position].time)
+
+            val tpd = TimePickerDialog(
+                context,
+                TimePickerDialog.OnTimeSetListener { timePicker, i, i2 ->
+                    val timeFormatted =
+                        "${if (i < 10) "0${i}" else i.toString()}:${if (i2 < 10) "0${i2}" else i2.toString()}"
+                    val newAlarm = AlarmModel(timeFormatted, listAlarms[position].status, listAlarms[position].id!!)
+                    myDB.updateAlarm(newAlarm)
+                    listAlarms[position] = newAlarm
+                    notifyItemChanged(position)
+                },
+                df.hours,
+                df.minutes,
+                true
+            )
+            tpd.show()
         }
     }
 

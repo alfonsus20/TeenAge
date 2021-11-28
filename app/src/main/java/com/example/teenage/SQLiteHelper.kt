@@ -117,6 +117,34 @@ class SQLiteHelper(context: Context) :
         db.close()
     }
 
+    fun insertAlarms() {
+        val db = this.writableDatabase
+        val alarmData = AlarmData.alarmData
+
+        for (alarm in alarmData) {
+            val contentValues = ContentValues()
+            contentValues.put(WAKTU, alarm.time)
+            contentValues.put(STATUS, alarm.status)
+            db.insert(TBL_ALARMS, null, contentValues)
+        }
+
+        db.close()
+    }
+
+    fun insertAlarm(alarm: AlarmModel) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(WAKTU, alarm.time)
+        cv.put(STATUS, alarm.status)
+        db.insert(TBL_ALARMS, null, cv)
+        db.close()
+    }
+
+    fun deleteAlarm(idAlarm: Int) {
+        val db = this.writableDatabase
+        db.delete(TBL_ALARMS, "id = " + idAlarm, null)
+    }
+
     fun insertHistory(history: HistoryModel): Long {
         val db = this.writableDatabase
         val contentValues = ContentValues()
@@ -131,14 +159,19 @@ class SQLiteHelper(context: Context) :
         return result
     }
 
-    fun historyQuery(): Cursor {
-        val db = this.writableDatabase
-        return db!!.rawQuery("SELECT * FROM " + TBL_HISTORIES, null)
-    }
-
     fun getUsers(): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
+    }
+
+    fun updateAlarm(alarm: AlarmModel) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+
+        cv.put(WAKTU, alarm.time)
+        cv.put(STATUS, alarm.status)
+
+        db.update(TBL_ALARMS, cv, "id = " + alarm.id, null)
     }
 
     fun updateUser(user: UserModel) {
@@ -171,6 +204,11 @@ class SQLiteHelper(context: Context) :
     fun getDrinks(): Cursor {
         val db = this.writableDatabase
         return db!!.rawQuery("SELECT * FROM " + TBL_DRINKS, null)
+    }
+
+    fun getAlarms(): Cursor {
+        val db = this.writableDatabase
+        return db!!.rawQuery("SELECT * FROM " + TBL_ALARMS, null)
     }
 
     fun getCurrentTimeStamp(): String? {

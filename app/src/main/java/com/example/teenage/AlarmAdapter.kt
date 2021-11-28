@@ -58,6 +58,12 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
             )
             tpd.show()
         }
+        
+        holder.switch.setOnCheckedChangeListener { compoundButton, b ->
+            val newAlarm = AlarmModel(listAlarms[position].time, b, listAlarms[position].id!!)
+            myDB.updateAlarm(newAlarm)
+            listAlarms[position] = newAlarm
+        }
     }
 
     override fun getItemCount(): Int {

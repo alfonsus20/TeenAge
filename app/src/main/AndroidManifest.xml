@@ -34,7 +34,7 @@
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
         
-<!--        <receiver android:name=""/>-->
+        <receiver android:name=".AlarmReceiver"/>
     </application>
 
 </manifest>

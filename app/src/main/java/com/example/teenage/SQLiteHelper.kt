@@ -60,7 +60,7 @@ class SQLiteHelper(context: Context) :
                 + ");")
 
         val CREATE_TABLE_HISTORIES = ("CREATE TABLE " + TBL_HISTORIES + "("
-                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_ID + " INTEGER, "
+                + ID + " INTEGER, " + USER_ID + " INTEGER, "
                 + DRINK_ID + " INTEGER, " + VOLUME + " INTEGER, "
                 + DRINK_TIME + " TEXT,"
                 + " FOREIGN KEY (" + USER_ID + ") REFERENCES " + TBL_USERS + "(id),"
@@ -123,6 +123,7 @@ class SQLiteHelper(context: Context) :
 
         for (alarm in alarmData) {
             val contentValues = ContentValues()
+            contentValues.put(ID, alarm.id)
             contentValues.put(WAKTU, alarm.time)
             contentValues.put(STATUS, alarm.status)
             db.insert(TBL_ALARMS, null, contentValues)
@@ -140,7 +141,7 @@ class SQLiteHelper(context: Context) :
         db.close()
     }
 
-    fun deleteAlarm(idAlarm: Int) {
+    fun deleteAlarm(idAlarm: Long) {
         val db = this.writableDatabase
         db.delete(TBL_ALARMS, "id = " + idAlarm, null)
     }
@@ -164,14 +165,15 @@ class SQLiteHelper(context: Context) :
         return db!!.rawQuery("SELECT * FROM " + TBL_USERS, null)
     }
 
-    fun updateAlarm(alarm: AlarmModel) {
+    fun updateAlarm(idAlarm: Long, alarm: AlarmModel) {
         val db = this.writableDatabase
         val cv = ContentValues()
 
+        cv.put(ID, alarm.id)
         cv.put(WAKTU, alarm.time)
         cv.put(STATUS, alarm.status)
 
-        db.update(TBL_ALARMS, cv, "id = " + alarm.id, null)
+        db.update(TBL_ALARMS, cv, "id = " + idAlarm, null)
     }
 
     fun updateUser(user: UserModel) {

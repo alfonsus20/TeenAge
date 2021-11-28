@@ -1,8 +1,12 @@
 package com.example.teenage
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +19,15 @@ import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) :
     RecyclerView.Adapter<AlarmAdapter.AlarmViewHolder>() {
 
     val myDB = SQLiteHelper(context)
+    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val intent = Intent(context, AlarmReceiver::class.java)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         var view: View =
@@ -32,24 +40,52 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
         holder.tvTime.text = listAlarms[position].time
         holder.switch.isChecked = listAlarms[position].status
 
+
         holder.btnDeleteAlarm.setOnClickListener {
-            myDB.deleteAlarm(listAlarms[position].id!!)
+            Log.i("id alarm", listAlarms[position].id.toString())
+
+            val pendingIntent =
+                PendingIntent.getBroadcast(context, listAlarms[position].id.toInt(), intent, 0)
+            alarmManager.cancel(pendingIntent)
+
+            myDB.deleteAlarm(listAlarms[position].id)
             listAlarms.removeAt(position)
+
+
             notifyItemRemoved(position)
             notifyDataSetChanged()
         }
 
         holder.btnEditAlarm.setOnClickListener {
             var df = SimpleDateFormat("HH:mm").parse(listAlarms[position].time)
-
+            val oldId = listAlarms[position].id
             val tpd = TimePickerDialog(
                 context,
                 TimePickerDialog.OnTimeSetListener { timePicker, i, i2 ->
                     val timeFormatted =
                         "${if (i < 10) "0${i}" else i.toString()}:${if (i2 < 10) "0${i2}" else i2.toString()}"
-                    val newAlarm = AlarmModel(timeFormatted, listAlarms[position].status, listAlarms[position].id!!)
-                    myDB.updateAlarm(newAlarm)
+
+                    val calendar = Calendar.getInstance()
+
+                    calendar.set(Calendar.HOUR_OF_DAY, i)
+                    calendar.set(Calendar.MINUTE, i2)
+
+                    val newAlarm = AlarmModel(
+                        timeFormatted,
+                        listAlarms[position].status,
+                        calendar.timeInMillis
+                    )
+
+                    myDB.updateAlarm(oldId, newAlarm)
                     listAlarms[position] = newAlarm
+
+                    val pendingIntent =
+                        PendingIntent.getBroadcast(context, newAlarm.id.toInt(), intent, 0)
+                    val df = SimpleDateFormat("HH:mm").parse(listAlarms[position].time)
+                    alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP, df.time, AlarmManager.INTERVAL_DAY, pendingIntent
+                    )
+
                     notifyItemChanged(position)
                 },
                 df.hours,
@@ -58,11 +94,20 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
             )
             tpd.show()
         }
-        
+
         holder.switch.setOnCheckedChangeListener { compoundButton, b ->
-            val newAlarm = AlarmModel(listAlarms[position].time, b, listAlarms[position].id!!)
-            myDB.updateAlarm(newAlarm)
+            val newAlarm = AlarmModel(listAlarms[position].time, b, listAlarms[position].id)
+            myDB.updateAlarm(listAlarms[position].id, newAlarm)
             listAlarms[position] = newAlarm
+            val pendingIntent = PendingIntent.getBroadcast(context, newAlarm.id.toInt(), intent, 0)
+            val df = SimpleDateFormat("HH:mm").parse(listAlarms[position].time)
+            if (b) {
+                alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP, df.time, AlarmManager.INTERVAL_DAY, pendingIntent
+                )
+            } else {
+                alarmManager.cancel(pendingIntent)
+            }
         }
     }
 

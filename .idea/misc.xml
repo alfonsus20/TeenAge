@@ -20,6 +20,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/drawable/target_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/font/font.xml" value="0.284375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/font/poppins.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/action_bar.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/activity_notif.xml" value="0.13020833333333334" />
@@ -30,7 +31,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_history_detail.xml" value="0.39279869067103107" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_home.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_menu.xml" value="0.4" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_notification.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_notification.xml" value="0.4" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/fragment_user.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/item_alarm.xml" value="0.4" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/TeenAge/app/src/main/res/layout/item_grid_drink.xml" value="0.25416666666666665" />

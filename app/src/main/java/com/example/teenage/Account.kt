@@ -169,7 +169,7 @@ class Account : AppCompatActivity() {
                         MainActivity@ this,
                         "Data berhasil diperbarui",
                         Toast.LENGTH_LONG
-                    )
+                    ).show()
                 } else {
                     myDB.insertUser(
                         UserModel(
@@ -183,7 +183,7 @@ class Account : AppCompatActivity() {
                     )
                     myDB.insertAlarms()
                 }
-                Toast.makeText(MainActivity@ this, "Data berhasil disimpan", Toast.LENGTH_LONG)
+                Toast.makeText(MainActivity@ this, "Data berhasil disimpan", Toast.LENGTH_LONG).show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

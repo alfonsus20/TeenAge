@@ -40,17 +40,13 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
         holder.tvTime.text = listAlarms[position].time
         holder.switch.isChecked = listAlarms[position].status
 
-
         holder.btnDeleteAlarm.setOnClickListener {
-            Log.i("id alarm", listAlarms[position].id.toString())
-
             val pendingIntent =
                 PendingIntent.getBroadcast(context, listAlarms[position].id.toInt(), intent, 0)
             alarmManager.cancel(pendingIntent)
 
             myDB.deleteAlarm(listAlarms[position].id)
             listAlarms.removeAt(position)
-
 
             notifyItemRemoved(position)
             notifyDataSetChanged()
@@ -69,6 +65,16 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
 
                     calendar.set(Calendar.HOUR_OF_DAY, i)
                     calendar.set(Calendar.MINUTE, i2)
+                    calendar.set(Calendar.SECOND, 0)
+
+                    alarmManager.cancel(
+                        PendingIntent.getBroadcast(
+                            context,
+                            listAlarms[position].id.toInt(),
+                            intent,
+                            0
+                        )
+                    )
 
                     val newAlarm = AlarmModel(
                         timeFormatted,
@@ -81,10 +87,12 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
 
                     val pendingIntent =
                         PendingIntent.getBroadcast(context, newAlarm.id.toInt(), intent, 0)
-                    val df = SimpleDateFormat("HH:mm").parse(listAlarms[position].time)
+                    val df = SimpleDateFormat("HH:mm:ss").parse("${listAlarms[position].time}:00")
                     alarmManager.setRepeating(
                         AlarmManager.RTC_WAKEUP, df.time, AlarmManager.INTERVAL_DAY, pendingIntent
                     )
+
+                    listAlarms[position].status = true
 
                     notifyItemChanged(position)
                 },
@@ -100,7 +108,7 @@ class AlarmAdapter(var listAlarms: ArrayList<AlarmModel>, val context: Context) 
             myDB.updateAlarm(listAlarms[position].id, newAlarm)
             listAlarms[position] = newAlarm
             val pendingIntent = PendingIntent.getBroadcast(context, newAlarm.id.toInt(), intent, 0)
-            val df = SimpleDateFormat("HH:mm").parse(listAlarms[position].time)
+            val df = SimpleDateFormat("HH:mm:ss").parse("${listAlarms[position].time}:00")
             if (b) {
                 alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP, df.time, AlarmManager.INTERVAL_DAY, pendingIntent

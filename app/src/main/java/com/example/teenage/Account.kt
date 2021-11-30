@@ -78,7 +78,8 @@ class Account : AppCompatActivity() {
             etName.setText(cursorCurrentUser.getString(1))
             etWeight.setText(cursorCurrentUser.getInt(3).toString())
             etHeight.setText(cursorCurrentUser.getInt(4).toString())
-            if (cursorCurrentUser.getString(2).equals("male")) {
+
+            if (cursorCurrentUser.getString(2).equals("man")) {
                 radioMan.isChecked = true
             } else {
                 radioWoman.isChecked = true
@@ -138,6 +139,7 @@ class Account : AppCompatActivity() {
         btnAccount.setOnClickListener {
             if (checkAllField()) {
                 val selectedGenderId = radioGroupGender.checkedRadioButtonId
+
                 val gender =
                     findViewById<RadioButton>(selectedGenderId).text.toString().toLowerCase()
 
@@ -183,7 +185,8 @@ class Account : AppCompatActivity() {
                     )
                     myDB.insertAlarms()
                 }
-                Toast.makeText(MainActivity@ this, "Data berhasil disimpan", Toast.LENGTH_LONG).show()
+                Toast.makeText(MainActivity@ this, "Data berhasil disimpan", Toast.LENGTH_LONG)
+                    .show()
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

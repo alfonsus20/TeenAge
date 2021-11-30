@@ -65,6 +65,7 @@ class NotificationFragment : Fragment() {
 
                     calendar.set(Calendar.HOUR_OF_DAY, i)
                     calendar.set(Calendar.MINUTE, i2)
+                    calendar.set(Calendar.SECOND,0)
 
                     val newAlarm = AlarmModel(timeFormatted, true, calendar.timeInMillis)
                     myDB.insertAlarm(newAlarm)
@@ -103,7 +104,7 @@ class NotificationFragment : Fragment() {
         val intent = Intent(context, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(context, alarm.id.toInt(), intent, 0)
 
-        val df = SimpleDateFormat("HH:mm").parse(alarm.time)
+        val df = SimpleDateFormat("HH:mm:ss").parse("${alarm.time}:00")
 
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP, df.time, AlarmManager.INTERVAL_DAY, pendingIntent
